@@ -7,9 +7,14 @@
 
 .CurrencyConverter-content {
     display: flex;
+    flex-direction: column;
     border: 1px solid @blue;
     border-radius: 3px;
     padding: 20px;
+}
+
+.CurrencyConverter-inputs {
+    display: flex;
 }
 
 .CurrencyConverter-item {
@@ -17,8 +22,14 @@
 }
 
 .CurrencyConverter-button {
-  background-color: @blue;
-  color: white;
-  border-radius: 3px;
-  height: 20px;
+    background-color: @blue;
+    color: white;
+    border-radius: 3px;
+    height: 20px;
+}
+
+.CurrencyConverter-errorMessage {
+    display: block;
+    color: @red;
+    margin-top: 10px;
 }
