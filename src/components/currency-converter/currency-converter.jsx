@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import currencyApiClient from "../../api-clients/currency-api-client";
+import conversionHistoryService from "../../services/conversion-history-service";
+
 import CurrencyInput from "../currency-input/currency-input";
 import CurrencyDropdown from "../currency-dropdown/currency-dropdown";
-import currencyApiClient from "../../api-clients/currency-api-client";
+import ConversionHistory from "../conversion-history/conversion-history";
 
 const CurrencyConverter = () => {
     const [currencies, setCurrencies] = useState([]);
@@ -10,7 +13,8 @@ const CurrencyConverter = () => {
         to: '',
         value: 0,
         convertedValue: 0,
-        errorMessage: ''
+        errorMessage: '',
+        conversions: conversionHistoryService.getConversions()
     });
 
     const loadCurrencies = async () => {
@@ -37,7 +41,7 @@ const CurrencyConverter = () => {
     };
 
     const handleInputChange = newState => {
-        setState({ ...state, ...newState, ... { errorMessage: '', convertedValue: 0 } });
+        setState({ ...state, ...newState, ... { errorMessage: '', convertedValue: '' } });
     };
     const handleFromOnChange = from => handleInputChange({ from });
     const handleToOnChange = to => handleInputChange({ to });
@@ -53,6 +57,14 @@ const CurrencyConverter = () => {
     useEffect(() => {
         loadCurrencies();
     }, []);
+
+    useEffect(() => {
+        if (state.convertedValue) {
+            conversionHistoryService.saveConversion(state);
+            const conversions = conversionHistoryService.getConversions();
+            setState({ ...state, ...{ conversions } });
+        }
+    }, [state.convertedValue]);
 
     return (
         <section className="CurrencyConverter">
@@ -99,6 +111,10 @@ const CurrencyConverter = () => {
                     {!!state.errorMessage &&
                         <span className="CurrencyConverter-errorMessage">{state.errorMessage}</span>}
                 </div>
+            </div>
+
+            <div className="CurrencyConverter-history">
+                <ConversionHistory conversions={state.conversions} />
             </div>
         </section>
     );
