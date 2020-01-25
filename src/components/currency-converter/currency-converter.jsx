@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CurrencyInput from '../currency-input/currency-input';
 import CurrencyDropdown from '../currency-dropdown/currency-dropdown';
+import currencyApiClient from '../../api-clients/currency-api-client';
 
 const CurrencyConverter = () => {
-    const currencies = ['EUR', 'USD'];
+    const [currencies, setCurrencies] = useState([]);
+
+    const loadCurrencies = async () => {
+        const result = await currencyApiClient.getCurrencies();
+        setCurrencies(result);
+    };
+
+    useEffect(() => {
+        loadCurrencies();
+    }, []);
 
     return (
         <section className="CurrencyConverter">
