@@ -1,15 +1,17 @@
 # currency-website
 React website for currency conversion.
 
-## NPM scripts
+## Development setup
 
-`lint`: runs linting rules
+`npm install`: installs project dependencies
 
-`test`: runs all tests found in the 'src' folder
+`npm run lint`: runs linting rules
 
-`start`: starts up the development server
+`npm test`: runs tests
 
-`build`: builds the production-ready files in the 'public' folder
+`npm run start`: starts up the development server
+
+`npm run build`: builds the production-ready files in the 'public' folder
 
 ## Running the website in a Docker container
 
