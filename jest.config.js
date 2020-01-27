@@ -1,5 +1,5 @@
 module.exports = {
-    verbose: true,
-    rootDir: 'src',
-    setupFiles: ['jest-localstorage-mock']
+  verbose: true,
+  rootDir: 'src',
+  setupFiles: ['jest-localstorage-mock']
 };
