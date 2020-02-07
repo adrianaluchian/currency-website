@@ -15,9 +15,9 @@ React website for currency conversion.
 
 ## Running the website in a Docker container
 
-`docker build . -website`
+`docker build . -t website`
 
-`docker run -p -d 8000:80 website`
+`docker run -p 8000:80 website`
 
 The website will be accessible at http://localhost:8000
 
