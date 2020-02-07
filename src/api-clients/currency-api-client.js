@@ -4,7 +4,7 @@ import settings from '../settings';
 async function getCurrencies () {
     try {
         const { body } = await superagent
-            .get(`${settings.currencyApiUrl}/currencies`);
+            .get(`${settings.currencyApiUrl}/conversions/currencies`);
         return body;
     } catch (error) {
         console.log('Error getting currencies: ', error);
@@ -15,7 +15,7 @@ async function getCurrencies () {
 async function convert (payload) {
     try {
         const { body } = await superagent
-            .post(`${settings.currencyApiUrl}/currencies/convert`)
+            .post(`${settings.currencyApiUrl}/currencies`)
             .set('Accept', 'application/json')
             .send(payload);
         return body;
