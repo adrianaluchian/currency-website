@@ -15,7 +15,7 @@ async function getCurrencies () {
 async function convert (payload) {
     try {
         const { body } = await superagent
-            .post(`${settings.currencyApiUrl}/currencies`)
+            .post(`${settings.currencyApiUrl}/conversions`)
             .set('Accept', 'application/json')
             .send(payload);
         return body;
